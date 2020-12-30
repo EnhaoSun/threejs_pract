@@ -28,9 +28,9 @@
         0, 0, 0, // vertcie 1
         50, 0, 0, // vertice 2
         0, 100, 0, // vertice 3
-        0, 0, 10, // vertice 4
+        0, 0, 0, // vertice 4
         0, 0, 100, // vertice 5
-        50, 0, 10, // vertice 6
+        50, 0, 0, // vertice 6
     ]);
     // 属性缓冲区对象
     let attribute = new THREE.BufferAttribute(vertices, 3); // 3个为一组，表示一个顶点的xyz坐标
@@ -48,21 +48,35 @@
     ]);
 
     geometry.attributes.color = new THREE.BufferAttribute(colors, 3);
+
+
+    var normals = new Float32Array([
+        0, 0, 1, //顶点1法向量
+        0, 0, 1, //顶点2法向量
+        0, 0, 1, //顶点3法向量
+
+        0, 1, 0, //顶点4法向量
+        0, 1, 0, //顶点5法向量
+        0, 1, 0, //顶点6法向量
+    ]);
+
+    geometry.attributes.normal = new THREE.BufferAttribute(normals, 3);
+
     /*
     //自定义几何体
     */
     let material = new THREE.MeshBasicMaterial({
-    	//color: 0x0000ff,
-    	vertexColors: THREE.VertexColors,
-    	side: THREE.DoubleSide // 两面可见
+        color: 0x0000ff,
+        //vertexColors: THREE.VertexColors,
+        side: THREE.DoubleSide // 两面可见
     });
     let mesh = new THREE.Mesh(geometry, material);
     /*
     //点模型
     let material = new THREE.PointsMaterial({
-    	//color: 0xff0000,
-    	vertexColors: THREE.VertexColors,
-    	size: 10.0 // 点对象像素尺寸
+        //color: 0xff0000,
+        vertexColors: THREE.VertexColors,
+        size: 10.0 // 点对象像素尺寸
     });
     let points = new THREE.Points(geometry, material);
     */
@@ -72,7 +86,7 @@
         color: 0x000000
     });
     let line = new THREE.Line(geometry, material);
-	*/
+    */
     scene.add(mesh);
     init_env(scene);
     </script>
