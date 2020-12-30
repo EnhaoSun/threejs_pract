@@ -31,6 +31,14 @@ function init_env(scene) {
     document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
     render(renderer, scene, camera);
     let controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    let flyControls = new THREE.FlyControls(camera, renderer.domElement); //传入相机对象
+    flyControls.movementSpeed = 100;
+    flyControls.rollSpeed = Math.PI / 24;
+
+    let clock = new THREE.Clock();
+    let delta = clock.getDelta();
+    flyControls.update(delta);
 }
 
 function render(renderer, scene, camera) {
