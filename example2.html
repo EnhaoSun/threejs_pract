@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>顶点位置数据解析渲染</title>
+    <style>
+        body {
+      margin: 0;
+      overflow: hidden;
+      /* 隐藏body窗口区域滚动条 */
+    }
+  </style>
+    <script src="../three.js/build/three.js"></script>
+    <script src="../three.js/examples/js/controls/OrbitControls.js"></script>
+    <script src="./utils.js"></script>
+    <script src="../three.js/examples/js/controls/FlyControls.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+    let scene = new THREE.Scene();
+
+    // customize geometry
+    let geometry = new THREE.BufferGeometry();
+
+    let vertices = new Float32Array([
+        0, 0, 0, // vertcie 1
+        50, 0, 0, // vertice 2
+        0, 100, 0, // vertice 3
+        0, 0, 10, // vertice 4
+        0, 0, 100, // vertice 5
+        50, 0, 10, // vertice 6
+    ]);
+    // 属性缓冲区对象
+    let attribute = new THREE.BufferAttribute(vertices, 3); // 3个为一组，表示一个顶点的xyz坐标
+    // 设置几何体attributes属性的位置属性
+    geometry.attributes.position = attribute;
+
+    let colors = new Float32Array([
+        1, 0, 0, //顶点1颜色
+        0, 1, 0, //顶点2颜色
+        0, 0, 1, //顶点3颜色
+
+        1, 1, 0, //顶点4颜色
+        0, 1, 1, //顶点5颜色
+        1, 0, 1, //顶点6颜色
+    ]);
+
+    geometry.attributes.color = new THREE.BufferAttribute(colors, 3);
+    /*
+    //自定义几何体
+    */
+    let material = new THREE.MeshBasicMaterial({
+    	//color: 0x0000ff,
+    	vertexColors: THREE.VertexColors,
+    	side: THREE.DoubleSide // 两面可见
+    });
+    let mesh = new THREE.Mesh(geometry, material);
+    /*
+    //点模型
+    let material = new THREE.PointsMaterial({
+    	//color: 0xff0000,
+    	vertexColors: THREE.VertexColors,
+    	size: 10.0 // 点对象像素尺寸
+    });
+    let points = new THREE.Points(geometry, material);
+    */
+    /*
+    //线模型
+    let material = new THREE.LineBasicMaterial({
+        color: 0x000000
+    });
+    let line = new THREE.Line(geometry, material);
+	*/
+    scene.add(mesh);
+    init_env(scene);
+    </script>
+</body>
+
+</html>
